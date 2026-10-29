@@ -1,6 +1,6 @@
 import { Scene } from 'phaser';
 import { EventBus } from '../EventBus';
-import { dummyPresence } from '../../data/dummypresence';
+import { dummyPresence } from '../../data/dummyPresence';
 import type { PresenceEntry, Status } from '../../types';
 
 const STATUS_COLOR: Record<Status, number> = {

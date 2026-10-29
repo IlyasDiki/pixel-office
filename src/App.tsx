@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { IRefPhaserGame, PhaserGame } from './PhaserGame';
 import * as Phaser from 'phaser';
 import { EventBus } from './game/EventBus';
-import StatusPanel from './components/statusPanel';
+import StatusPanel from './components/StatusPanel';
 import type { PresenceEntry } from './types';
 
 function App()
