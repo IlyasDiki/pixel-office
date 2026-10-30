@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Phaser React TypeScript Template
 
 This is a Phaser project template that uses the React framework and Vite for bundling. It includes a bridge for React to Phaser game communication, hot-reloading for quick development workflow and scripts to generate production-ready builds.
@@ -244,3 +245,6 @@ Created by [Phaser Studio](mailto:support@phaser.io). Powered by coffee, anime, 
 The Phaser logo and characters are &copy; 2011 - 2025 Phaser Studio Inc.
 
 All rights reserved.
+=======
+# pixeloffice
+>>>>>>> a247f88cfbffe526f5bcd22462cf98df829e62e8
