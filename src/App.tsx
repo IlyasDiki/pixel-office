@@ -7,6 +7,7 @@ import OfficeControls from './components/OfficeControls';
 import { useAuth } from './hooks/useAuth';
 import { useRealtimePresence } from './hooks/useRealtimePresence';
 import type { PresenceEntry } from './types';
+import PresenceList from './components/PresenceList';
 
 function App() {
     const phaserRef = useRef<IRefPhaserGame | null>(null);
@@ -39,6 +40,7 @@ function App() {
             <PhaserGame ref={phaserRef} />
             <OfficeControls email={session.user.email ?? ''} />
             <StatusPanel entry={selected} onClose={() => setSelected(null)} />
+            <PresenceList />
         </div>
     );
 }
