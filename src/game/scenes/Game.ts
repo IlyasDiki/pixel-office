@@ -14,6 +14,7 @@ const STATUS_COLOR: Record<Status, number> = {
 export class Game extends Scene {
   private avatars = new Map<string, GameObjects.Container>();
   private alive = true;
+  private reqId = 0;
 
   constructor() {
     super('Game');
@@ -36,12 +37,15 @@ export class Game extends Scene {
   }
 
   private refresh = async () => {
+    const id = ++this.reqId;
     try {
       const list = await fetchPresence();
-      if (!this.alive) return;
+      // Abaikan jawaban yang sudah usang atau scene yang sudah ditutup
+      if (!this.alive || id !== this.reqId) return;
       this.avatars.forEach((c) => c.destroy());
       this.avatars.clear();
       list.forEach((p) => this.spawnAvatar(p));
+      EventBus.emit('presence:updated', list);
     } catch (err) {
       console.error('Gagal ambil data presence:', err);
     }
@@ -76,4 +80,6 @@ export class Game extends Scene {
 
     this.avatars.set(p.userId, c);
   }
+
+  
 }

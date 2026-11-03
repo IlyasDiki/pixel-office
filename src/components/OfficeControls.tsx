@@ -27,7 +27,7 @@ export default function OfficeControls({ email }: { email: string }) {
       if (!mine) {
         const seats = await fetchFreeSeats();
         setFreeSeats(seats);
-        setSeatId(seats[0]?.id ?? '');
+        setSeatId((prev) => (seats.some((s) => s.id === prev) ? prev : seats[0]?.id ?? ''));
       }
     } catch (e) {
       setMsg((e as { message?: string }).message ?? 'Gagal memuat data');
@@ -35,6 +35,13 @@ export default function OfficeControls({ email }: { email: string }) {
   }, []);
 
   useEffect(() => { load(); }, [load]);
+
+  useEffect(() => {
+    EventBus.on('presence:updated', load);
+    return () => {
+      EventBus.off('presence:updated', load);
+    };
+  }, [load]);
 
   const run = async (action: () => Promise<void>) => {
     setBusy(true);

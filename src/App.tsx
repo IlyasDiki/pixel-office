@@ -5,6 +5,7 @@ import StatusPanel from './components/StatusPanel';
 import LoginPage from './components/LoginPage';
 import OfficeControls from './components/OfficeControls';
 import { useAuth } from './hooks/useAuth';
+import { useRealtimePresence } from './hooks/useRealtimePresence';
 import type { PresenceEntry } from './types';
 
 function App() {
@@ -12,11 +13,21 @@ function App() {
     const [selected, setSelected] = useState<PresenceEntry | null>(null);
     const { session, loading } = useAuth();
 
+    // Hook harus dipanggil sebelum return bersyarat di bawah
+    useRealtimePresence(!!session);
+
     useEffect(() => {
         const onClick = (p: PresenceEntry) => setSelected(p);
+        // Panel ikut diperbarui; kalau orangnya sudah pulang, panel menutup
+        const onUpdated = (list: PresenceEntry[]) =>
+            setSelected((prev) =>
+                prev ? list.find((x) => x.userId === prev.userId) ?? null : null
+            );
         EventBus.on('avatar:clicked', onClick);
+        EventBus.on('presence:updated', onUpdated);
         return () => {
             EventBus.off('avatar:clicked', onClick);
+            EventBus.off('presence:updated', onUpdated);
         };
     }, []);
 
