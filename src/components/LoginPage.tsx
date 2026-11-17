@@ -17,7 +17,7 @@ export default function LoginPage() {
     setBusy(false);
   };
 
-  const input = { padding: 10, borderRadius: 8, border: '1px solid #444', background: '#2f3349', color: '#fff' };
+  const input = { padding: 10, fontSize: 16, borderRadius: 8, border: '1px solid #444', background: '#2f3349', color: '#fff' };
 
   return (
     <div style={{ minHeight: '100vh', display: 'grid', placeItems: 'center', fontFamily: 'sans-serif' }}>

@@ -22,11 +22,7 @@ export default function PresenceList() {
   }, []);
 
   return (
-    <div style={{
-      position: 'fixed', left: 16, bottom: 16, width: 220, maxHeight: '40vh', overflow: 'auto',
-      padding: 12, borderRadius: 12, background: '#1f2233', color: '#fff', fontFamily: 'sans-serif',
-      boxShadow: '0 8px 24px rgba(0,0,0,.4)', zIndex: 10,
-    }}>
+    <div className="panel panel-list">
       <button onClick={() => setOpen(!open)} style={{ width: '100%' }}>
         Di kantor ({list.length}) {open ? '▾' : '▸'}
       </button>

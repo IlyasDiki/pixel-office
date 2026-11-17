@@ -71,7 +71,14 @@ export class Game extends Scene {
     const dot = this.add.circle(22, -52, 6, STATUS_COLOR[p.status]).setStrokeStyle(2, 0x000000);
     const name = this.add.text(0, -72, p.name, style).setOrigin(0.5);
 
-    c.add([desk, seat, body, head, dot, name]);
+    // area sentuh transparan yang lebih besar
+    const hit = this.add.rectangle(0, 5, 100, 130, 0xffffff, 0.001);
+    c.add([desk, seat, body, head, dot, name, hit]);
+
+    hit.setInteractive({ useHandCursor: true });
+    hit.on('pointerover', () => body.setScale(1.1));
+    hit.on('pointerout', () => body.setScale(1));
+    hit.on('pointerdown', () => EventBus.emit('avatar:clicked', p));
 
     body.setInteractive({ useHandCursor: true });
     body.on('pointerover', () => body.setScale(1.1));

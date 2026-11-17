@@ -57,14 +57,10 @@ export default function OfficeControls({ email }: { email: string }) {
     setBusy(false);
   };
 
-  const box = {
-    position: 'fixed' as const, right: 16, top: 16, width: 240, padding: 16,
-    borderRadius: 12, background: '#1f2233', color: '#fff', fontFamily: 'sans-serif',
-    boxShadow: '0 8px 24px rgba(0,0,0,.4)', display: 'flex', flexDirection: 'column' as const, gap: 8,
-  };
+
 
   return (
-    <div style={box}>
+    <div className="panel panel-controls">
       <div style={{ fontSize: 13, opacity: 0.7 }}>{email}</div>
 
       {me ? (
