@@ -13,7 +13,7 @@ const STATUS_OPTIONS: { value: Status; label: string }[] = [
   { value: 'break', label: 'Istirahat' },
 ];
 
-export default function OfficeControls({ email }: { email: string }) {
+export default function OfficeControls({ email, onChangePassword }: { email: string; onChangePassword: () => void }) {
   const [me, setMe] = useState<{ status: Status } | null>(null);
   const [freeSeats, setFreeSeats] = useState<{ id: number; label: string }[]>([]);
   const [seatId, setSeatId] = useState<number | ''>('');
@@ -85,7 +85,8 @@ export default function OfficeControls({ email }: { email: string }) {
           </button>
         </>
       )}
-
+      
+      <button disabled={busy} onClick={onChangePassword}>Ganti password</button>
       <button disabled={busy} onClick={() => supabase.auth.signOut()}>Keluar akun</button>
       {msg && <div style={{ color: '#f87171', fontSize: 13 }}>{msg}</div>}
     </div>
